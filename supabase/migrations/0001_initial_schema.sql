@@ -11,9 +11,12 @@ exception when duplicate_object then null;
 end $$;
 
 do $$ begin
-  create type public.interaction_type as enum ('email', 'call', 'meeting', 'note');
+  create type public.interaction_type as enum ('email', 'call', 'meeting', 'note', 'linkedin');
 exception when duplicate_object then null;
 end $$;
+
+-- If the enum already exists from an earlier version, make sure 'linkedin' is present.
+alter type public.interaction_type add value if not exists 'linkedin';
 
 -- =====================================================
 -- Tables
@@ -27,9 +30,18 @@ create table if not exists public.companies (
   size text,
   website text,
   notes text,
+  agents_summary text,
+  org_structure text,
+  account_strategy text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+-- Backwards-compatible: add columns if the table already exists
+alter table public.companies add column if not exists agents_summary text;
+alter table public.companies add column if not exists org_structure text;
+alter table public.companies add column if not exists people_spoken_with text;
+alter table public.companies add column if not exists account_strategy text;
 
 create index if not exists companies_owner_idx on public.companies(owner);
 
@@ -80,8 +92,16 @@ create table if not exists public.interactions (
   contact_id uuid references public.contacts(id) on delete cascade,
   company_id uuid references public.companies(id) on delete set null,
   deal_id uuid references public.deals(id) on delete set null,
+  follow_up text,
+  follow_up_due date,
+  follow_up_done boolean not null default false,
   created_at timestamptz not null default now()
 );
+
+-- Backwards-compatible: add follow-up columns if the table already exists
+alter table public.interactions add column if not exists follow_up text;
+alter table public.interactions add column if not exists follow_up_due date;
+alter table public.interactions add column if not exists follow_up_done boolean not null default false;
 
 create index if not exists interactions_owner_idx on public.interactions(owner);
 create index if not exists interactions_contact_idx on public.interactions(contact_id);
@@ -110,6 +130,16 @@ create trigger contacts_updated_at before update on public.contacts
 drop trigger if exists deals_updated_at on public.deals;
 create trigger deals_updated_at before update on public.deals
   for each row execute function public.set_updated_at();
+
+-- =====================================================
+-- Grants (required so the authenticated role can see tables at all;
+-- RLS then restricts which rows.)
+-- =====================================================
+grant usage on schema public to authenticated, anon;
+grant select, insert, update, delete on public.companies to authenticated;
+grant select, insert, update, delete on public.contacts to authenticated;
+grant select, insert, update, delete on public.deals to authenticated;
+grant select, insert, update, delete on public.interactions to authenticated;
 
 -- =====================================================
 -- Row Level Security

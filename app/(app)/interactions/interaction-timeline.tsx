@@ -1,5 +1,6 @@
 import { Mail, Phone, Users, FileText } from 'lucide-react'
 import { InteractionForm } from './interaction-form'
+import { LinkedinIcon } from '@/app/(app)/components/icons'
 import type { Interaction, InteractionType } from '@/lib/supabase/types'
 import { createClient } from '@/lib/supabase/server'
 
@@ -7,6 +8,7 @@ const TYPE_ICON: Record<InteractionType, React.ComponentType<{ size?: number }>>
   email: Mail,
   call: Phone,
   meeting: Users,
+  linkedin: LinkedinIcon,
   note: FileText,
 }
 

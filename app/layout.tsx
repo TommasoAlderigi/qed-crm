@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'CRM',
-  description: 'Internal CRM for contacts, companies, pipeline, and interactions',
+  title: 'QED CRM',
+  description: 'Quick and Dirty CRM — contacts, companies, pipeline, and activity',
 }
 
 export default function RootLayout({

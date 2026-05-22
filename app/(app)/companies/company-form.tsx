@@ -80,6 +80,50 @@ export function CompanyForm({
         />
       </div>
 
+      <div>
+        <label htmlFor="agents_summary">Agents they are building</label>
+        <textarea
+          id="agents_summary"
+          name="agents_summary"
+          rows={6}
+          placeholder="Markdown supported. Use **bold** for headings."
+          defaultValue={company?.agents_summary ?? ''}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="org_structure">Org structure</label>
+        <textarea
+          id="org_structure"
+          name="org_structure"
+          rows={5}
+          placeholder="Departments, divisions, hierarchy. Anything about how the company is structured."
+          defaultValue={company?.org_structure ?? ''}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="people_spoken_with">Who we spoke with</label>
+        <textarea
+          id="people_spoken_with"
+          name="people_spoken_with"
+          rows={5}
+          placeholder="- **Name** — role / context"
+          defaultValue={company?.people_spoken_with ?? ''}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="account_strategy">Account strategy</label>
+        <textarea
+          id="account_strategy"
+          name="account_strategy"
+          rows={5}
+          placeholder="Plan, watchouts, champion…"
+          defaultValue={company?.account_strategy ?? ''}
+        />
+      </div>
+
       <div className="flex gap-3 pt-2">
         <button type="submit" disabled={pending} className="btn-primary disabled:opacity-50">
           {pending ? 'Saving…' : company ? 'Save changes' : 'Create company'}

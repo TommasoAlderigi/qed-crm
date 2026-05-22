@@ -34,6 +34,10 @@ export async function createCompany(formData: FormData) {
       size: nonEmpty(formData.get('size')),
       website: nonEmpty(formData.get('website')),
       notes: nonEmpty(formData.get('notes')),
+      agents_summary: nonEmpty(formData.get('agents_summary')),
+      org_structure: nonEmpty(formData.get('org_structure')),
+      people_spoken_with: nonEmpty(formData.get('people_spoken_with')),
+      account_strategy: nonEmpty(formData.get('account_strategy')),
     })
     .select('id')
     .single()
@@ -57,6 +61,10 @@ export async function updateCompany(id: string, formData: FormData) {
       size: nonEmpty(formData.get('size')),
       website: nonEmpty(formData.get('website')),
       notes: nonEmpty(formData.get('notes')),
+      agents_summary: nonEmpty(formData.get('agents_summary')),
+      org_structure: nonEmpty(formData.get('org_structure')),
+      people_spoken_with: nonEmpty(formData.get('people_spoken_with')),
+      account_strategy: nonEmpty(formData.get('account_strategy')),
     })
     .eq('id', id)
 

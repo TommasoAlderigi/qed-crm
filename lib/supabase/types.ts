@@ -1,5 +1,5 @@
 export type DealStage = 'lead' | 'qualified' | 'proposal' | 'won' | 'lost'
-export type InteractionType = 'email' | 'call' | 'meeting' | 'note'
+export type InteractionType = 'email' | 'call' | 'meeting' | 'note' | 'linkedin'
 
 export const DEAL_STAGES: { value: DealStage; label: string; color: string }[] = [
   { value: 'lead', label: 'Lead', color: 'bg-slate-100 text-slate-700' },
@@ -13,6 +13,7 @@ export const INTERACTION_TYPES: { value: InteractionType; label: string }[] = [
   { value: 'email', label: 'Email' },
   { value: 'call', label: 'Call' },
   { value: 'meeting', label: 'Meeting' },
+  { value: 'linkedin', label: 'LinkedIn' },
   { value: 'note', label: 'Note' },
 ]
 
@@ -25,6 +26,10 @@ export interface Company {
   size: string | null
   website: string | null
   notes: string | null
+  agents_summary: string | null
+  org_structure: string | null
+  people_spoken_with: string | null
+  account_strategy: string | null
   created_at: string
   updated_at: string
 }
@@ -70,6 +75,9 @@ export interface Interaction {
   contact_id: string | null
   company_id: string | null
   deal_id: string | null
+  follow_up: string | null
+  follow_up_due: string | null
+  follow_up_done: boolean
   created_at: string
 }
 

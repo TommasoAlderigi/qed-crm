@@ -36,15 +36,12 @@ label {
   @apply block text-sm font-medium text-slate-700 mb-1;
 }
 
-.btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors;
-}
 .btn-primary {
-  @apply btn bg-slate-900 text-white hover:bg-slate-800;
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors bg-slate-900 text-white hover:bg-slate-800;
 }
 .btn-secondary {
-  @apply btn bg-white text-slate-700 border border-slate-300 hover:bg-slate-50;
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors bg-white text-slate-700 border border-slate-300 hover:bg-slate-50;
 }
 .btn-danger {
-  @apply btn bg-rose-600 text-white hover:bg-rose-700;
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors bg-rose-600 text-white hover:bg-rose-700;
 }

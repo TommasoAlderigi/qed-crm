@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Plus } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
+import { CompanyLogo } from '@/app/(app)/components/company-logo'
 import type { Company } from '@/lib/supabase/types'
 
 type CompanyRow = Company & { contacts: { count: number }[] }
@@ -46,12 +47,20 @@ export default async function CompaniesPage() {
               {companies.map((c) => (
                 <tr key={c.id} className="hover:bg-slate-50">
                   <td className="px-4 py-2">
-                    <Link
-                      href={`/companies/${c.id}`}
-                      className="font-medium text-slate-900 hover:underline"
-                    >
-                      {c.name}
-                    </Link>
+                    <div className="flex items-center gap-3">
+                      <CompanyLogo
+                        domain={c.domain}
+                        name={c.name}
+                        size={28}
+                        rounded="md"
+                      />
+                      <Link
+                        href={`/companies/${c.id}`}
+                        className="font-medium text-slate-900 hover:underline"
+                      >
+                        {c.name}
+                      </Link>
+                    </div>
                   </td>
                   <td className="px-4 py-2 text-slate-700">{c.domain ?? ''}</td>
                   <td className="px-4 py-2 text-slate-700">{c.industry ?? ''}</td>

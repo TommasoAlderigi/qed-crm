@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Plus, Mail, Phone, Users as UsersIcon, FileText } from 'lucide-react'
+import { LinkedinIcon } from '@/app/(app)/components/icons'
 import { createClient } from '@/lib/supabase/server'
 import type {
   Interaction,
@@ -19,6 +20,7 @@ const TYPE_ICON: Record<InteractionType, React.ComponentType<{ size?: number }>>
   email: Mail,
   call: Phone,
   meeting: UsersIcon,
+  linkedin: LinkedinIcon,
   note: FileText,
 }
 

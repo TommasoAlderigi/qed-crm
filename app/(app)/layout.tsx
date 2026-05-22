@@ -7,6 +7,7 @@ import {
   Building2,
   TrendingUp,
   MessageSquare,
+  CheckSquare,
   LogOut,
 } from 'lucide-react'
 
@@ -16,6 +17,7 @@ const NAV_ITEMS = [
   { href: '/companies', label: 'Companies', Icon: Building2 },
   { href: '/pipeline', label: 'Pipeline', Icon: TrendingUp },
   { href: '/interactions', label: 'Activity', Icon: MessageSquare },
+  { href: '/follow-ups', label: 'Follow-ups', Icon: CheckSquare },
 ]
 
 export default async function AppLayout({
@@ -37,7 +39,7 @@ export default async function AppLayout({
       <aside className="w-60 shrink-0 border-r border-slate-200 bg-white flex flex-col">
         <div className="px-5 py-5 border-b border-slate-200">
           <Link href="/dashboard" className="text-lg font-semibold tracking-tight">
-            CRM
+            QED CRM
           </Link>
         </div>
         <nav className="flex-1 p-2 space-y-1">
